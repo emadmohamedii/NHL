@@ -1,0 +1,10 @@
+def swap(coords: np.ndarray):
+    """
+    This method will flip the x and y coordinates in the coords array.
+    """
+    coords_swapped = coords.copy()
+    coords_swapped[:, 0] = coords[:, 1]  # x1 ← y1
+    coords_swapped[:, 1] = coords[:, 0]  # y1 ← x1
+    coords_swapped[:, 2] = coords[:, 3]  # x2 ← y2
+    coords_swapped[:, 3] = coords[:, 2]  # y2 ← x2
+    return coords_swapped
