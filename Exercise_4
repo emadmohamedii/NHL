@@ -1,0 +1,23 @@
+def plot_data(csv_file_path: str):
+    """
+    This code plots the precision-recall curve based on data from a .csv file,
+    where precision is on the x-axis and recall is on the y-axis.
+    """
+    # Load data and convert to float
+    results = []
+    with open(csv_file_path) as result_csv:
+        csv_reader = csv.reader(result_csv, delimiter=',')
+        next(csv_reader)  # Skip header
+        for row in csv_reader:
+            results.append([float(row[0]), float(row[1])])  # Convert to float
+        results = np.stack(results)
+
+    # Plot precision-recall curve
+    plt.plot(results[:, 1], results[:, 0])  # Recall (x-axis), Precision (y-axis)
+    plt.ylim([-0.05, 1.05])
+    plt.xlim([-0.05, 1.05])
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.title('Precision-Recall Curve')
+    plt.grid(True)
+    plt.show()
